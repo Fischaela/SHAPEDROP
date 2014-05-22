@@ -20,25 +20,57 @@ function init () {
  * Both shapes and slots were pushed in their arrays.
  */
 function buildShapes () {
-	var colors = ['red', 'blue', 'green', 'yellow'],
+	var colors = ['rect', 'circle', 'star', 'roundrect'],
 			i,
 			shape,
 			slot;
 	for ( i = 0; i < colors.length; i++ ) {
 		slot = new createjs.Shape();
-		slot.graphics.beginStroke(colors[i]);
+		slot.graphics.beginStroke('#000000');
 		slot.graphics.beginFill('#ffffff');
-		slot.graphics.drawRect(0, 0, 100, 100);
-		slot.regX = slot.regY = 50;
+		switch (i) {
+			case i = 0:
+				slot.graphics.drawRect(0, 0, 100, 100);
+				slot.regX = slot.regY = 50;
+				break;
+			case i = 1:
+				slot.graphics.drawCircle(0, 0, 50);
+				slot.regX = slot.regY = 0;
+				break;
+			case i = 2:
+				slot.graphics.drawPolyStar(0, 0, 50, 6, 0.6, -90);
+				slot.regX = slot.regY = 0;
+				break;
+			case i = 3:
+				slot.graphics.drawRoundRect(0, 0, 100, 100, 5);
+				slot.regX = slot.regY = 50;
+				break;
+		}
 		slot.key = i;
 		slot.y = 80;
 		slot.x = (i * 130) + 100;
 		stage.addChild(slot);
 		slots.push(slot);
 		shape = new createjs.Shape();
-		shape.graphics.beginFill(colors[i]);
-		shape.graphics.drawRect(0, 0, 100, 100);
-		shape.regX = shape.regY = 50;
+		shape.graphics.beginFill('#000000');
+		switch (i) {
+			case i = 0:
+				shape.graphics.drawRect(0, 0, 100, 100);
+				shape.regX = shape.regY = 50;
+				break;
+			case i = 1:
+				shape.graphics.drawCircle(0, 0, 50);
+				shape.regX = shape.regY = 0;
+				break;
+			case i = 2:
+				shape.graphics.drawPolyStar(0, 0, 50, 6, 0.6, -90);
+				shape.regX = shape.regY = 0;
+				break;
+			case i = 3:
+				shape.graphics.drawRoundRect(0, 0, 100, 100, 5);
+				shape.regX = shape.regY = 50;
+				break;
+		}
 		shape.key = i;
 		shapes.push(shape);
 	}
