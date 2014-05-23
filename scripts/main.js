@@ -20,25 +20,57 @@ function init () {
  * Both shapes and slots were pushed in their arrays.
  */
 function buildShapes () {
-	var colors = ['red', 'blue', 'green', 'yellow'],
+	var colors = ['rect', 'circle', 'star', 'roundrect'],
 			i,
 			shape,
 			slot;
 	for ( i = 0; i < colors.length; i++ ) {
 		slot = new createjs.Shape();
-		slot.graphics.beginStroke(colors[i]);
-		slot.graphics.beginFill('#ffffff');
-		slot.graphics.drawRect(0, 0, 100, 100);
-		slot.regX = slot.regY = 50;
+		slot.graphics.beginStroke('#F2DEE7');
+		slot.graphics.beginFill('#CD7794');
+		switch (i) {
+			case i = 0:
+				slot.graphics.drawRect(0, 0, 100, 100);
+				slot.regX = slot.regY = 50;
+				break;
+			case i = 1:
+				slot.graphics.drawCircle(0, 0, 50);
+				slot.regX = slot.regY = 0;
+				break;
+			case i = 2:
+				slot.graphics.drawPolyStar(0, 0, 50, 6, 0.6, -90);
+				slot.regX = slot.regY = 0;
+				break;
+			case i = 3:
+				slot.graphics.drawRoundRect(0, 0, 100, 100, 25);
+				slot.regX = slot.regY = 50;
+				break;
+		}
 		slot.key = i;
 		slot.y = 80;
 		slot.x = (i * 130) + 100;
 		stage.addChild(slot);
 		slots.push(slot);
 		shape = new createjs.Shape();
-		shape.graphics.beginFill(colors[i]);
-		shape.graphics.drawRect(0, 0, 100, 100);
-		shape.regX = shape.regY = 50;
+		shape.graphics.beginFill('#F2DEE7');
+		switch (i) {
+			case i = 0:
+				shape.graphics.drawRect(0, 0, 100, 100);
+				shape.regX = shape.regY = 50;
+				break;
+			case i = 1:
+				shape.graphics.drawCircle(0, 0, 50);
+				shape.regX = shape.regY = 0;
+				break;
+			case i = 2:
+				shape.graphics.drawPolyStar(0, 0, 50, 6, 0.6, -90);
+				shape.regX = shape.regY = 0;
+				break;
+			case i = 3:
+				shape.graphics.drawRoundRect(0, 0, 100, 100, 25);
+				shape.regX = shape.regY = 50;
+				break;
+		}
 		shape.key = i;
 		shapes.push(shape);
 	}
@@ -100,11 +132,20 @@ function startDrag (e) {
 
 /**
  * Check if the shapes are all placed correctly.
- * If yes, give the user feedback.
+ * If yes, give the user feedback
+ * and the possibility to reload the game
  */
 function checkGame () {
 	if ( score === 4 ) {
-		alert('You win!');
+		var modal = document.getElementById('restart-dialog'),
+				restartButton = document.getElementById('restart');
+		modal.className = modal.className + ' is-visible';
+		restartButton.onclick = function (e) {
+			e.preventDefault();
+			modal.className = 'modal';
+			score = 0;
+			init();
+		};
 	}
 }
 
