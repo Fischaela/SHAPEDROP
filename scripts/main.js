@@ -26,8 +26,8 @@ function buildShapes () {
 			slot;
 	for ( i = 0; i < colors.length; i++ ) {
 		slot = new createjs.Shape();
-		slot.graphics.beginStroke('#000000');
-		slot.graphics.beginFill('#ffffff');
+		slot.graphics.beginStroke('#F2DEE7');
+		slot.graphics.beginFill('#CD7794');
 		switch (i) {
 			case i = 0:
 				slot.graphics.drawRect(0, 0, 100, 100);
@@ -42,7 +42,7 @@ function buildShapes () {
 				slot.regX = slot.regY = 0;
 				break;
 			case i = 3:
-				slot.graphics.drawRoundRect(0, 0, 100, 100, 5);
+				slot.graphics.drawRoundRect(0, 0, 100, 100, 25);
 				slot.regX = slot.regY = 50;
 				break;
 		}
@@ -52,7 +52,7 @@ function buildShapes () {
 		stage.addChild(slot);
 		slots.push(slot);
 		shape = new createjs.Shape();
-		shape.graphics.beginFill('#000000');
+		shape.graphics.beginFill('#F2DEE7');
 		switch (i) {
 			case i = 0:
 				shape.graphics.drawRect(0, 0, 100, 100);
@@ -67,7 +67,7 @@ function buildShapes () {
 				shape.regX = shape.regY = 0;
 				break;
 			case i = 3:
-				shape.graphics.drawRoundRect(0, 0, 100, 100, 5);
+				shape.graphics.drawRoundRect(0, 0, 100, 100, 25);
 				shape.regX = shape.regY = 50;
 				break;
 		}
@@ -132,11 +132,20 @@ function startDrag (e) {
 
 /**
  * Check if the shapes are all placed correctly.
- * If yes, give the user feedback.
+ * If yes, give the user feedback
+ * and the possibility to reload the game
  */
 function checkGame () {
 	if ( score === 4 ) {
-		alert('You win!');
+		var modal = document.getElementById('restart-dialog'),
+				restartButton = document.getElementById('restart');
+		modal.className = modal.className + ' is-visible';
+		restartButton.onclick = function (e) {
+			e.preventDefault();
+			modal.className = 'modal';
+			score = 0;
+			init();
+		};
 	}
 }
 
