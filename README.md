@@ -11,4 +11,4 @@ Take a look at it on [Codepen.io][6].
 [3]: http://www.createjs.com/#!/TweenJS
 [4]: https://twitter.com/bmanderscheid
 [5]: http://www.apress.com/9781430263401
-[6]: bit.ly/1njkIcE
+[6]: http://codepen.io/Fischaela/full/EHtIe
